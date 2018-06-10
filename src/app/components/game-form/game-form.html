@@ -1,0 +1,79 @@
+<!-- Generated template for the GameFormComponent component -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      New Game
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="secondary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="gameForm" (ngSubmit)="saveGame()">
+    <ion-list>
+      <div>
+        <h3>Winner</h3>
+        <ion-item>
+          <ion-label>Score</ion-label>
+          <ion-input type="number" formControlName="t1Score"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Player 1</ion-label>
+          <ion-select formControlName="t1p1Name">
+            <ion-option *ngFor="let player of players">
+              {{player.Name}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Player 2</ion-label>
+          <ion-select formControlName="t1p2Name">
+            <ion-option *ngFor="let player of players">
+              {{player.Name}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div margin-top>
+        <h3>Loser</h3>
+        <ion-item>
+          <ion-label>Score</ion-label>
+          <ion-input type="number" formControlName="t2Score"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Player 3</ion-label>
+          <ion-select formControlName="t2p1Name">
+            <ion-option *ngFor="let player of players">
+              {{player.Name}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Player 4</ion-label>
+          <ion-select formControlName="t2p2Name">
+            <ion-option *ngFor="let player of players">
+              {{player.Name}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-list>
+    <div text-center>
+      <button ion-button type="button" (click)="reset()">Clear</button>
+      <button ion-button type="submit" color="secondary" [disabled]="!gameForm.valid">Save</button>
+    </div>
+    <div class="danger" *ngIf="submitted">
+      A team's score is empty or not valid.
+    </div>
+    <div class="danger" *ngIf="submitted">
+      All player names are required.
+    </div>
+    <div class="danger" *ngIf="submitted && showAdditionalErrors">
+      {{errorMessage}}
+    </div>
+  </form>
+</ion-content>

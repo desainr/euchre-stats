@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Game Log
+        </ion-title>
+    </ion-navbar>
+    <button ion-button (click)="addGame()" color="danger" style="width: 100%">
+        <ion-icon name="add"></ion-icon>
+    </button>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngFor="let game of games">
+      <ion-card-header>{{getTimeDisplay(game)}}</ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              {{game.winner().Player1.Name}}
+              <br />
+              {{game.winner().Player2.Name}}
+            </ion-col>
+            <ion-col col-2>
+              {{game.winner().Score}}
+            </ion-col>
+            <ion-col col-2>
+              {{game.loser().Score}}
+            </ion-col>
+            <ion-col col-4>
+              {{game.loser().Player1.Name}}
+              <br />
+              {{game.loser().Player2.Name}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
