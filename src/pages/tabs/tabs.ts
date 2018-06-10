@@ -9,7 +9,8 @@ import { Standings } from '../standings/standings';
 export class TabsPage {
 
   tab1Root = GameLog;
-  tab2Root = Standings;
+  tab2Root = Individual;
+  tab3Root = Standings;
 
   constructor() {
 

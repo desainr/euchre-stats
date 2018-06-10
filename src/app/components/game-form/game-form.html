@@ -66,12 +66,6 @@
       <button ion-button type="button" (click)="reset()">Clear</button>
       <button ion-button type="submit" color="secondary" [disabled]="!gameForm.valid">Save</button>
     </div>
-    <div class="danger" *ngIf="submitted">
-      A team's score is empty or not valid.
-    </div>
-    <div class="danger" *ngIf="submitted">
-      All player names are required.
-    </div>
     <div class="danger" *ngIf="submitted && showAdditionalErrors">
       {{errorMessage}}
     </div>

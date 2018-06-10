@@ -4,6 +4,7 @@ import {Game} from '../../games/game.model';
 import {GameFormComponent} from '../../app/components/game-form/game-form';
 import {MockGameService} from "../../games/mock-game.service";
 import moment from "moment";
+import {MockPlayerService} from "../../players/mock-player.service";
 
 @Component({
   selector: 'game-log',
@@ -13,14 +14,15 @@ export class GameLog {
 
   public games: Game[];
 
-  constructor(public navCtrl: NavController, private gameService: MockGameService, private modalController: ModalController) {
+  constructor(public navCtrl: NavController, private gameService: MockGameService, private playerService: MockPlayerService, private modalController: ModalController) {
     gameService.GetGames().subscribe((data) => {
       this.games = data;
     });
   }
 
   public addGame() {
-    let addGameModal = this.modalController.create(GameFormComponent);
+    let players = this.playerService.GetPlayers();
+    let addGameModal = this.modalController.create(GameFormComponent, {players: players});
 
     addGameModal.onDidDismiss((game?: Game) => {
       if (game) {
@@ -31,8 +33,7 @@ export class GameLog {
     addGameModal.present();
   }
 
-  public getTimeDisplay(game: Game): string
-  {
+  public getTimeDisplay(game: Game): string {
     return moment(game.Time).format("MM/DD/YYYY");
   }
 
