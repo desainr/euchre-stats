@@ -1,4 +1,4 @@
-<!-- Generated template for the GameFormComponent component -->
+<!-- Generated template for the GameForm component -->
 <ion-header>
   <ion-toolbar>
     <ion-title>
@@ -14,55 +14,64 @@
 </ion-header>
 <ion-content padding>
   <form [formGroup]="gameForm" (ngSubmit)="saveGame()">
-    <ion-list>
-      <div>
-        <h3>Winner</h3>
-        <ion-item>
-          <ion-label>Score</ion-label>
-          <ion-input type="number" formControlName="t1Score"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Player 1</ion-label>
-          <ion-select formControlName="t1p1Name">
-            <ion-option *ngFor="let player of players">
-              {{player.Name}}
-            </ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>Player 2</ion-label>
-          <ion-select formControlName="t1p2Name">
-            <ion-option *ngFor="let player of players">
-              {{player.Name}}
-            </ion-option>
-          </ion-select>
-        </ion-item>
-      </div>
-      <div margin-top>
-        <h3>Loser</h3>
-        <ion-item>
-          <ion-label>Score</ion-label>
-          <ion-input type="number" formControlName="t2Score"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Player 3</ion-label>
-          <ion-select formControlName="t2p1Name">
-            <ion-option *ngFor="let player of players">
-              {{player.Name}}
-            </ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>Player 4</ion-label>
-          <ion-select formControlName="t2p2Name">
-            <ion-option *ngFor="let player of players">
-              {{player.Name}}
-            </ion-option>
-          </ion-select>
-        </ion-item>
-      </div>
-    </ion-list>
-    <div text-center>
+    <div margin-top>
+      <h3>Winner</h3>
+      <ion-item>
+        <ion-label>Score</ion-label>
+        <ion-input type="number" formControlName="winningScore"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Player 1</ion-label>
+        <ion-select formControlName="winningPlayer1">
+          <ion-option *ngFor="let player of players" [value]="player.$key">
+            {{player.Name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Player 2</ion-label>
+        <ion-select formControlName="winningPlayer2">
+          <ion-option *ngFor="let player of players" [value]="player.$key">
+            {{player.Name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div margin-top>
+      <h3>Loser</h3>
+      <ion-item>
+        <ion-label>Score</ion-label>
+        <ion-input type="number" formControlName="losingScore"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Player 3</ion-label>
+        <ion-select formControlName="losingPlayer1">
+          <ion-option *ngFor="let player of players" [value]="player.$key">
+            {{player.Name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Player 4</ion-label>
+        <ion-select formControlName="losingPlayer2">
+          <ion-option *ngFor="let player of players" [value]="player.$key">
+            {{player.Name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div margin-top>
+      <h3>Info</h3>
+      <ion-item>
+        <ion-label>Location</ion-label>
+        <ion-input type="text" formControlName="locationDescription"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Notes</ion-label>
+        <ion-input type="text" formControlName="notes"></ion-input>
+      </ion-item>
+    </div>
+    <div margin-top text-center>
       <button ion-button type="button" (click)="reset()">Clear</button>
       <button ion-button type="submit" color="secondary" [disabled]="!gameForm.valid">Save</button>
     </div>

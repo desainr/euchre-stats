@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { GameLog } from '../game-log/game-log';
-import { Individual } from '../individual/individual';
+import { GamePage } from '../game-page/game-page';
+import { IndividualPage } from '../individual/individual-page.component';
 import { Standings } from '../standings/standings';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
-  tab1Root = GameLog;
-  tab2Root = Individual;
+  tab1Root = GamePage;
+  tab2Root = IndividualPage;
   tab3Root = Standings;
 
   constructor() {

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { GameFormComponent } from './game-form/game-form';
+import { GameForm } from './game-form/game-form';
 import { IonicModule } from 'ionic-angular';
 import {PlayerService} from "../../players/player.service";
 import {GameService} from "../../games/game.service";
+import {GameLog} from "./game-log/game-log";
 @NgModule({
-	declarations: [GameFormComponent],
+	declarations: [GameForm, GameLog],
 	imports: [
 		IonicModule
 	],
@@ -12,6 +13,6 @@ import {GameService} from "../../games/game.service";
     PlayerService,
     GameService
   ],
-	exports: [GameFormComponent]
+	exports: [GameForm, GameLog]
 })
 export class ComponentsModule {}

@@ -1,14 +1,19 @@
 import {Component} from '@angular/core';
-import {NavParams, ViewController} from 'ionic-angular';
-import {Game} from '../../../games/game.model';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ViewController} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {Player} from "../../../players/player.model";
+import {PlayerService} from "../../../players/player.service";
+import {GameEntity} from "../../../games/game.entity";
+import {TeamEntity} from "../../../teams/team.entity";
+import {Geolocation} from "@ionic-native/geolocation";
+import moment from "moment";
+import {Location} from "../../../games/location.model";
 
 @Component({
-  selector: 'game-form',
+  selector: 'GameForm',
   templateUrl: 'game-form.html'
 })
-export class GameFormComponent {
+export class GameForm {
   public errorMessage: string = "";
   public showAdditionalErrors: boolean = false;
   public submitted: boolean = false;
@@ -17,15 +22,20 @@ export class GameFormComponent {
 
   public players: Player[];
 
-  constructor(public navParams: NavParams, public viewController: ViewController, private formBuilder: FormBuilder) {
-    this.players = this.navParams.get("players");
+  constructor(private playerService: PlayerService, public viewController: ViewController, private formBuilder: FormBuilder, private geolocation: Geolocation) {
+    this.playerService.GetAll().subscribe((players) => {
+      this.players = players;
+    });
+
     this.gameForm = this.formBuilder.group({
-      "t1p1Name": ['', Validators.required],
-      "t1p2Name": ['', Validators.required],
-      "t2p1Name": ['', Validators.required],
-      "t2p2Name": ['', Validators.required],
-      "t1Score": [null, Validators.compose([Validators.min(0), Validators.required])],
-      "t2Score": [null, Validators.compose([Validators.min(0), Validators.required])]
+      "winningPlayer1": ['', Validators.required],
+      "winningPlayer2": ['', Validators.required],
+      "losingPlayer1": ['', Validators.required],
+      "losingPlayer2": ['', Validators.required],
+      "winningScore": [null, Validators.compose([Validators.min(0), Validators.required])],
+      "losingScore": [null, Validators.compose([Validators.min(0), Validators.required])],
+      "notes": ['', Validators.maxLength(100)],
+      "locationDescription": ['', Validators.maxLength(100)]
     });
   }
 
@@ -35,18 +45,18 @@ export class GameFormComponent {
   }
 
   private winnerIsValid(): boolean {
-    if(parseInt(this.gameForm.controls['t1Score'].value) < parseInt(this.gameForm.controls['t2Score'].value))
-    {
+    if (parseInt(this.gameForm.controls['winningScore'].value) < parseInt(this.gameForm.controls['losingScore'].value)) {
       this.errorMessage = "Winning score must be higher than losing score.";
       this.showAdditionalErrors = true;
       return false;
     }
 
-    if(parseInt(this.gameForm.controls['t1Score'].value) < 10) {
+    if (parseInt(this.gameForm.controls['winningScore'].value) < 10) {
       this.errorMessage = "Winning score must be higher than 10.";
       this.showAdditionalErrors = true;
       return false;
     }
+
     this.showAdditionalErrors = false;
     return true;
   }
@@ -57,8 +67,25 @@ export class GameFormComponent {
 
   public saveGame() {
     this.submitted = true;
-    if(this.gameForm.valid && this.winnerIsValid()) {
-      this.viewController.dismiss(new Game(this.gameForm.value));
+
+    if (this.gameForm.valid && this.winnerIsValid()) {
+
+      let winningTeam = new TeamEntity(
+        [this.gameForm.controls["winningPlayer1"].value, this.gameForm.controls["winningPlayer2"].value],
+        this.gameForm.controls["winningScore"].value);
+
+      let losingTeam = new TeamEntity(
+        [this.gameForm.controls["losingPlayer1"].value, this.gameForm.controls["losingPlayer2"].value],
+        this.gameForm.controls["losingScore"].value);
+
+        let location = new Location();
+        // location.lat = geolocation.coords.latitude.toString();
+        // location.lng = geolocation.coords.longitude.toString();
+        location.Description = this.gameForm.controls["locationDescription"].value;
+
+        let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
+
+        this.viewController.dismiss(game);
     }
   }
 }

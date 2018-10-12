@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Game Log
+    </ion-title>
+  </ion-navbar>
+  <button ion-button (click)="addGame()" color="danger" style="width: 100%">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-header>
+
+<ion-content padding>
+  <GameLog [games]="games"></GameLog>
+  <ion-infinite-scroll (ionInfinite)="scrollInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"
+                                 loadingText="Retrieving more games..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

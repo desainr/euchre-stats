@@ -7,17 +7,21 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Individual } from '../pages/individual/individual';
+import { IndividualPage } from '../pages/individual/individual-page.component';
 import { Standings } from '../pages/standings/standings';
-import { GameLog } from '../pages/game-log/game-log';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireModule } from 'angularfire2';
+import { GamePage } from '../pages/game-page/game-page';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { GameService } from '../games/game.service';
 import { ComponentsModule } from './components/components.module';
-import {GameFormComponent} from "./components/game-form/game-form";
-import {MockGameService} from "../games/mock-game.service";
-import {MockPlayerService} from "../players/mock-player.service";
+import {GameForm} from "./components/game-form/game-form";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {LoginPage} from "../pages/login/login";
+import {AuthService} from "../auth/auth.service";
+import {Facebook} from "@ionic-native/facebook";
+import {PlayerService} from "../players/player.service";
+import {Geolocation} from "@ionic-native/geolocation";
 
 const config = {
   apiKey: "AIzaSyBx5NJAmb6AsrHVHV3OSfjfYOxZUj236As",
@@ -31,10 +35,11 @@ const config = {
 @NgModule({
   declarations: [
     MyApp,
-    Individual,
+    IndividualPage,
     Standings,
-    GameLog,
-    TabsPage
+    GamePage,
+    TabsPage,
+    LoginPage
   ],
   imports: [
     ComponentsModule,
@@ -48,11 +53,12 @@ const config = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Individual,
+    LoginPage,
+    IndividualPage,
     Standings,
-    GameLog,
+    GamePage,
     TabsPage,
-    GameFormComponent
+    GameForm
   ],
 
   // TODO: remove mocks
@@ -60,8 +66,12 @@ const config = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
-    MockPlayerService,
-    MockGameService,
+    AngularFireAuth,
+    AuthService,
+    Facebook,
+    Geolocation,
+    GameService,
+    PlayerService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
