@@ -1,13 +1,7 @@
+import {Player} from "../players/player.model";
+
 export class TeamEntity {
   $key: string;
-  Players: object = {};
+  Players: Player[];
   Score: number;
-
-  constructor(players: Array<string>, score: number) {
-    players.forEach((player) => {
-      this.Players[player] = true;
-    });
-
-    this.Score = score;
-  }
 }

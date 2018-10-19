@@ -22,6 +22,7 @@ import {AuthService} from "../auth/auth.service";
 import {Facebook} from "@ionic-native/facebook";
 import {PlayerService} from "../players/player.service";
 import {Geolocation} from "@ionic-native/geolocation";
+import {TeamService} from "../teams/team.service";
 
 const config = {
   apiKey: "AIzaSyBx5NJAmb6AsrHVHV3OSfjfYOxZUj236As",
@@ -70,6 +71,7 @@ const config = {
     AuthService,
     Facebook,
     Geolocation,
+    TeamService,
     GameService,
     PlayerService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

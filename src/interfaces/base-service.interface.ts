@@ -1,9 +1,9 @@
 import {Observable} from "rxjs";
 
-export interface IFirebaseService<T> {
+export interface IFirebaseService<T, E> {
   GetAll(): Observable<T[]>;
   Get(guid: string): Observable<T>;
-  Save(entity: T): Observable<void>;
-  Update(entity: T): Observable<void>;
-  Delete(entity: T): Observable<void>;
+  Save(entity: E): Observable<void>;
+  Update(entity: E): Observable<void>;
+  Delete(entity: E): Observable<void>;
 }

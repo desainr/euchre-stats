@@ -90,6 +90,11 @@
         <variable name="APP_NAME" value="Euchre Stats" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="EuchreTrak would like to use your location to save game data." />
+    </plugin>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>We use your location for full functionality of certain app features.</string>
+    </edit-config>
     <engine name="ios" spec="4.5.5" />
 </widget>

@@ -1,7 +1,7 @@
 import {Player} from "../players/player.model";
 
 export class Team {
-    Players: Player[];
+    Players: Player[] | any;
     Score: number;
 
     constructor(players: Player[] = null, score: number = null) {

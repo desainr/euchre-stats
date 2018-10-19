@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController, ModalController} from 'ionic-angular';
+import {NavController, ModalController, ToastController} from 'ionic-angular';
 import {GameForm} from '../../app/components/game-form/game-form';
 import {GameService} from "../../games/game.service";
+import {map} from "rxjs/operators";
 import {Game} from "../../games/game.model";
 import {GameEntity} from "../../games/game.entity";
 
@@ -15,7 +16,7 @@ export class GamePage {
   private gameIndex = 15;
   private readonly numToLoad = 15;
 
-  constructor(public navCtrl: NavController, private gameService: GameService, private modalController: ModalController) {
+  constructor(public navCtrl: NavController, private gameService: GameService, private modalController: ModalController, private toastController: ToastController) {
     this.gameService.GetAllPaginated(this.numToLoad).subscribe((games) => {
       this.games = games.reverse();
     });
@@ -42,12 +43,28 @@ export class GamePage {
     }, 1000);
   }
 
+  public presentSaveSuccesful() {
+    let toast = this.toastController.create({
+      message: "Game saved successfully",
+      duration: 3000,
+      position: "top"
+    });
+
+    toast.onDidDismiss(() => {
+
+    });
+
+    toast.present();
+  }
+
   public addGame() {
     let addGameModal = this.modalController.create(GameForm);
 
     addGameModal.onDidDismiss((game?: GameEntity) => {
       if (game) {
-        this.gameService.Save(game);
+        this.gameService.SaveGame(game).subscribe(() => {
+          this.presentSaveSuccesful();
+        });
       }
     });
     addGameModal.present();

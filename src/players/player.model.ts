@@ -3,6 +3,7 @@ export class Player {
   Name: string;
   Wins: number;
   Losses: number;
+  WinPct: number;
 
   constructor(name: string = "") {
     this.Name = name;
