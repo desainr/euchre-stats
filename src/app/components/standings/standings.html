@@ -1,0 +1,33 @@
+<!-- Generated template for the StandingsComponent component -->
+<div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <h4>Name</h4>
+      </ion-col>
+      <ion-col col-3>
+        <h4>Wins</h4>
+      </ion-col>
+      <ion-col col-3>
+        <h4>Losses</h4>
+      </ion-col>
+      <ion-col col-3>
+        <h4>Win %</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let player of players">
+      <ion-col col-3>
+        {{player.Name}}
+      </ion-col>
+      <ion-col col-3>
+        {{player.Wins}}
+      </ion-col>
+      <ion-col col-3>
+        {{player.Losses}}
+      </ion-col>
+      <ion-col>
+        {{player.WinPct}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
