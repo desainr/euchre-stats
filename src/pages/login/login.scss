@@ -1,7 +1,9 @@
 login {
-  .center-vertical {
+  .vertical-align-content > * {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     height: 100%;
-    display: block;
-    vertical-align: middle;
   }
+
 }

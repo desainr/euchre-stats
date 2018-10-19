@@ -1,7 +1,16 @@
 <!-- Generated template for the LoginComponent component -->
-<div>
-  <div class="center-vertical">
-    <h3 style="color:white;">Euchre Stats</h3>
-    <button ion-button (click)="login()">Login with Facebook <ion-icon name="logo-facebook"></ion-icon></button>
-  </div>
-</div>
+<ion-content text-center class="vertical-align-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="assets/imgs/euchre_hand.png" style="height: 150px; width: 300px"/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1 text-uppercase no-padding no-margin style="color: white">EuchreTrak</h1>
+        <button style="background-color: #3b5998" ion-button (click)="login()">Login with Facebook &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
