@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "emulate": "ionic cordova emulate ios",
+    "apple": "ionic cordova run ios -- --buildFlag=\"UseModernBuildSystem=0\"",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
