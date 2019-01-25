@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Game} from "./game.model";
-import {Observable} from "rxjs/observable";
+import {Observable} from "rxjs";
 import {from, concat, forkJoin} from "rxjs"
 import {map, switchMap, take} from "rxjs/operators";
 import {AngularFireDatabase} from "@angular/fire/database";
