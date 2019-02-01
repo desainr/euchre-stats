@@ -45,6 +45,8 @@ Eventually I want to have this app be able to stand alone. A new user would sign
 their friends could sign up and the original user could add them to the group, and the app would load information specific to that group. 
 Could be used for leagues and such. 
 
+This app has not been tested *at all* on Android devices. I have no idea if it will work or what it will look like. 
+
 Other more "advanced" or additional ideas
 * Have the app send notifications to a user when a new game is logged that included them as a player.
   
