@@ -22,7 +22,8 @@ import {AuthService} from "../auth/auth.service";
 import {Facebook} from "@ionic-native/facebook";
 import {PlayerService} from "../players/player.service";
 import {Geolocation} from "@ionic-native/geolocation";
-import {TeamService} from "../teams/team.service";
+import {TeamStatsService} from "../teams/team-stats.service";
+import {IonicStorageModule} from "@ionic/storage";
 
 const config = {
   apiKey: "AIzaSyBx5NJAmb6AsrHVHV3OSfjfYOxZUj236As",
@@ -49,7 +50,8 @@ const config = {
     HttpClientModule,
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +73,7 @@ const config = {
     AuthService,
     Facebook,
     Geolocation,
-    TeamService,
+    TeamStatsService,
     GameService,
     PlayerService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

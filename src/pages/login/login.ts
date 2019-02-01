@@ -14,8 +14,7 @@ export class LoginPage {
 
   text: string;
 
-  constructor(public navCntrl: NavController, private firebaseAuth: AngularFireAuth, private authService: AuthService, public facebook: Facebook) {
-  }
+  constructor(public navCntrl: NavController, private afAuth: AngularFireAuth, private authService: AuthService, public facebook: Facebook) {}
 
   public login() {
     this.facebook.login(['email'])
@@ -23,9 +22,9 @@ export class LoginPage {
         const facebookCredential = auth.FacebookAuthProvider
           .credential(response.authResponse.accessToken);
 
-        this.firebaseAuth.auth.signInWithCredential(facebookCredential)
-          .then(success => {
-            this.navCntrl.push(TabsPage);
+        this.afAuth.auth.signInWithCredential(facebookCredential)
+          .then(firebaseUser => {
+            this.authService.saveUser(firebaseUser).subscribe(() => this.navCntrl.push(TabsPage));
           });
 
       }).catch((error) => {

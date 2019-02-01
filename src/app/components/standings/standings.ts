@@ -13,7 +13,7 @@ export class StandingsComponent {
   constructor(private playerService: PlayerService) {
     this.playerService.GetAll().subscribe((players: Player[]) => {
       this.players = players.sort((p1, p2) => {
-        return p2.WinPct - p1.WinPct
+        return p2.getWinPct() - p1.getWinPct()
       });
     })
   }

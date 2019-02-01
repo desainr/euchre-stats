@@ -1,5 +1,5 @@
 import {Location} from "./location.model";
-import {TeamEntity} from "../teams/team.entity";
+import {TeamEntity} from "./team.entity";
 
 export class GameEntity {
   $key: string;

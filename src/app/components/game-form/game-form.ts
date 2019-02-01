@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {Player} from "../../../players/player.model";
 import {PlayerService} from "../../../players/player.service";
 import {GameEntity} from "../../../games/game.entity";
-import {TeamEntity} from "../../../teams/team.entity";
+import {TeamEntity} from "../../../games/team.entity";
 import {Geolocation} from "@ionic-native/geolocation";
 import moment from "moment";
 import {Location} from "../../../games/location.model";
@@ -73,16 +73,16 @@ export class GameForm {
       let winningTeam = new TeamEntity();
       winningTeam.Players =
         [
-          this.players.find((player) => player.$key ===this.gameForm.controls["winningPlayer1"].value),
-          this.players.find((player) => player.$key === this.gameForm.controls["winningPlayer2"].value)
+          this.players.find((player) => player.UID ===this.gameForm.controls["winningPlayer1"].value),
+          this.players.find((player) => player.UID === this.gameForm.controls["winningPlayer2"].value)
         ];
       winningTeam.Score = this.gameForm.controls["winningScore"].value;
 
       let losingTeam = new TeamEntity();
       losingTeam.Players =
         [
-          this.players.find((player) => player.$key == this.gameForm.controls["losingPlayer1"].value),
-          this.players.find((player) => player.$key == this.gameForm.controls["losingPlayer2"].value)
+          this.players.find((player) => player.UID == this.gameForm.controls["losingPlayer1"].value),
+          this.players.find((player) => player.UID == this.gameForm.controls["losingPlayer2"].value)
         ];
 
       losingTeam.Score = this.gameForm.controls["losingScore"].value;

@@ -23,7 +23,7 @@
       <ion-item>
         <ion-label>Player 1</ion-label>
         <ion-select formControlName="winningPlayer1">
-          <ion-option *ngFor="let player of players" [value]="player.$key">
+          <ion-option *ngFor="let player of players" [value]="player.UID">
             {{player.Name}}
           </ion-option>
         </ion-select>
@@ -31,7 +31,7 @@
       <ion-item>
         <ion-label>Player 2</ion-label>
         <ion-select formControlName="winningPlayer2">
-          <ion-option *ngFor="let player of players" [value]="player.$key">
+          <ion-option *ngFor="let player of players" [value]="player.UID">
             {{player.Name}}
           </ion-option>
         </ion-select>
@@ -46,7 +46,7 @@
       <ion-item>
         <ion-label>Player 3</ion-label>
         <ion-select formControlName="losingPlayer1">
-          <ion-option *ngFor="let player of players" [value]="player.$key">
+          <ion-option *ngFor="let player of players" [value]="player.UID">
             {{player.Name}}
           </ion-option>
         </ion-select>
@@ -54,7 +54,7 @@
       <ion-item>
         <ion-label>Player 4</ion-label>
         <ion-select formControlName="losingPlayer2">
-          <ion-option *ngFor="let player of players" [value]="player.$key">
+          <ion-option *ngFor="let player of players" [value]="player.UID">
             {{player.Name}}
           </ion-option>
         </ion-select>

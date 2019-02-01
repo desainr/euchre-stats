@@ -6,6 +6,7 @@ import {GameService} from "../../games/game.service";
 import {GameLog} from "./game-log/game-log";
 import {Geolocation} from "@ionic-native/geolocation";
 import {StandingsComponent} from "./standings/standings";
+import {AuthService} from "../../auth/auth.service";
 
 @NgModule({
   declarations: [GameForm, GameLog, StandingsComponent],
@@ -13,6 +14,7 @@ import {StandingsComponent} from "./standings/standings";
     IonicModule
   ],
   providers: [
+    AuthService,
     PlayerService,
     GameService,
     Geolocation

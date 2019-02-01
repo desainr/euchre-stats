@@ -62,7 +62,7 @@ export class GamePage {
 
     addGameModal.onDidDismiss((game?: GameEntity) => {
       if (game) {
-        this.gameService.SaveGame(game).subscribe(() => {
+        this.gameService.Save(game).subscribe(() => {
           this.presentSaveSuccesful();
         });
       }

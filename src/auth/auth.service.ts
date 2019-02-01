@@ -2,17 +2,25 @@ import {Injectable} from "@angular/core";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {auth, User} from "firebase/app";
 import {Observable} from "rxjs/Observable";
+import {from} from "rxjs"
+import {Facebook} from "@ionic-native/facebook";
+import {Storage} from "@ionic/storage";
+import CONSTANTS from "../static/constants";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(private afAuth: AngularFireAuth, private facebook: Facebook, private storage: Storage) {}
 
   public getUser(): Observable<User> {
-    return this.afAuth.user;
+    return from(this.storage.get(CONSTANTS.LOCAL_STORAGE.CURRENT_USER))
   }
 
-  public async signOut() {
-    return await this.afAuth.auth.signOut();
+  public saveUser(user: User): Observable<void> {
+    return from(this.storage.set(CONSTANTS.LOCAL_STORAGE.CURRENT_USER, user))
+  }
+
+  public signOut(): Promise<any> {
+    return Promise.all([this.facebook.logout(), this.afAuth.auth.signOut()])
   }
 }
