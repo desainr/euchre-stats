@@ -84,19 +84,40 @@ export class GameForm {
           this.players.find((player) => player.UID == this.gameForm.controls["losingPlayer1"].value),
           this.players.find((player) => player.UID == this.gameForm.controls["losingPlayer2"].value)
         ];
-
+      
       losingTeam.Score = this.gameForm.controls["losingScore"].value;
+      // let location = new Location();
+      // location.lat = "0";
+      // location.lng = "0"
+      // location.Description = this.gameForm.controls["locationDescription"].value;
 
-      this.geolocation.getCurrentPosition().then((geolocation) => {
-        let location = new Location();
-        location.lat = geolocation.coords.latitude.toString();
-        location.lng = geolocation.coords.longitude.toString();
-        location.Description = this.gameForm.controls["locationDescription"].value;
+      // let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
 
-        let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
-
-        this.viewController.dismiss(game);
-      });
+      // this.viewController.dismiss(game);
+      
+        this.geolocation.getCurrentPosition().then((geolocation) => {
+          let location = new Location();
+          location.lat = geolocation.coords.latitude.toString();
+          location.lng = geolocation.coords.longitude.toString();
+          location.Description = this.gameForm.controls["locationDescription"].value;
+  
+          let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
+  
+          this.viewController.dismiss(game);
+        }).catch((error) => {
+          console.log("Error getting location. Setting defaults", error)
+          let location = new Location();
+          location.lat = "N/A"
+          location.lng = "N/A"
+          location.Description = this.gameForm.controls["locationDescription"].value;
+  
+          let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
+  
+          this.viewController.dismiss(game);
+        });
+      
+      
+     
     }
   }
 }

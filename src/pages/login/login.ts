@@ -25,7 +25,6 @@ export class LoginPage {
         this.afAuth.auth.signInWithCredential(facebookCredential)
           .then(firebaseUser => {
             this.authService.saveUser(firebaseUser).subscribe(() => this.navCntrl.push(TabsPage));
-            //this.navCntrl.push(TabsPage);
           });
 
       }).catch((error) => {
