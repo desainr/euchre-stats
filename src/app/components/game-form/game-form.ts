@@ -85,16 +85,8 @@ export class GameForm {
           this.players.find((player) => player.UID == this.gameForm.controls["losingPlayer2"].value)
         ];
       
-      losingTeam.Score = this.gameForm.controls["losingScore"].value;
-      // let location = new Location();
-      // location.lat = "0";
-      // location.lng = "0"
-      // location.Description = this.gameForm.controls["locationDescription"].value;
-
-      // let game = new GameEntity(winningTeam, losingTeam, location, moment().toISOString(), this.gameForm.controls["notes"].value);
-
-      // this.viewController.dismiss(game);
-      
+      losingTeam.Score = this.gameForm.controls["losingScore"].value;     
+       
         this.geolocation.getCurrentPosition().then((geolocation) => {
           let location = new Location();
           location.lat = geolocation.coords.latitude.toString();
