@@ -6,6 +6,7 @@ import {from} from "rxjs"
 import {Facebook} from "@ionic-native/facebook";
 import {Storage} from "@ionic/storage";
 import CONSTANTS from "../static/constants";
+import { Player } from "../players/player.model";
 
 @Injectable()
 export class AuthService {
@@ -14,10 +15,11 @@ export class AuthService {
 
   public getUser(): Observable<User> {
     return from(this.storage.get(CONSTANTS.LOCAL_STORAGE.CURRENT_USER))
+    
   }
 
   public saveUser(user: User): Observable<void> {
-    return from(this.storage.set(CONSTANTS.LOCAL_STORAGE.CURRENT_USER, user))
+    return from(this.storage.set(CONSTANTS.LOCAL_STORAGE.CURRENT_USER, "Robbie"))
   }
 
   public signOut(): Promise<any> {
