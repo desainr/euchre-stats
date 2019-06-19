@@ -53,6 +53,7 @@ export class PlayerService implements IFirebaseReadUpdate<Player> {
 
     return player;
   }
+ 
 
 
 }
