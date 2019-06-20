@@ -13,8 +13,8 @@ export class StandingsComponent {
   constructor(private playerService: PlayerService) {
     this.playerService.GetAll().subscribe((players: Player[]) => {
       console.log("getwinpct error")
-      console.log(this.players)
-      console.log(typeof this.players)
+      console.log(players)
+      console.log(typeof players)
       this.players = players.sort((p1, p2) => {
         console.log("list players")
         console.log(p1.Name + " " + p1.UID + " " + p1.Wins + " " + p1.Losses)
