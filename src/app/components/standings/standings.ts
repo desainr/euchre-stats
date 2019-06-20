@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Player} from "../../../players/player.model";
 import {PlayerService} from "../../../players/player.service";
+import { UrlSerializer } from 'ionic-angular';
 
 @Component({
   selector: 'StandingsTable',
@@ -16,12 +17,16 @@ export class StandingsComponent {
       console.log(players)
       console.log(typeof players)
       this.players = players.sort((p1, p2) => {
+
+        let player1 = Object.assign(new Player(), p1);        
+        let player2 = Object.assign(new Player(), p2);
+        p1.winPct = parseFloat((player1.getWinPct()*100).toFixed(2))
+        p2.winPct = parseFloat((player2.getWinPct()*100).toFixed(2))
+
         console.log("list players")
-        console.log(p1.Name + " " + p1.UID + " " + p1.Wins + " " + p1.Losses)
-        console.log(p2.Name + " " + p2.UID + " " + p2.Wins + " " + p2.Losses)
-        return p2.getWinPct() - p1.getWinPct()        
-        // return (p2.Wins && p2.Losses ? (p2.Wins / (p2.Wins + p2.Losses)) : 0)
-        //   - (p1.Wins && p1.Losses ? (p1.Wins / (p1.Wins + p1.Losses)) : 0)
+        console.log(p1.Name + " " + p1.Wins + " " + p1.Losses)
+        console.log(p2.Name + " " + p2.Wins + " " + p2.Losses)
+        return player2.getWinPct() - player1.getWinPct()        
       });
     });
   }

@@ -19,8 +19,6 @@ export class AuthService {
   }
 
   public saveUser(user: User): Observable<void> {
-    console.log(user.uid)
-    console.log(user.displayName)
     return from(this.storage.set(CONSTANTS.LOCAL_STORAGE.CURRENT_USER, "lT3vvK6HwxfjFvskHb47UjWQmx93"))
   }
 

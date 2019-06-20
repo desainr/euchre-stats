@@ -3,14 +3,14 @@ export class Player {
   Wins: number;
   Losses: number;
   UID: string;
+  winPct: number;
 
   constructor(name: string = "") {
     this.Name = name;
   }
 
-  getWinPct() {
-    console.log("it is" + typeof (this.Wins && this.Losses ? (this.Wins / (this.Wins + this.Losses)) : 0))
-    console.log("result is" + (this.Wins && this.Losses ? (this.Wins / (this.Wins + this.Losses)) : 0))
+  getWinPct() {    
+    console.log(this.Name + " win % is" + (this.Wins && this.Losses ? (this.Wins / (this.Wins + this.Losses)) : 0))
     return this.Wins && this.Losses ? (this.Wins / (this.Wins + this.Losses)) : 0;
   }
 }
